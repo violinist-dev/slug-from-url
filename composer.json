@@ -1,0 +1,28 @@
+{
+    "name": "violinist-dev/slug-from-url",
+    "description": "Get a slug from a URL",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eirik S. Morland",
+            "email": "eirik@morland.no"
+        }
+    ],
+    "autoload": {
+      "psr-4": {
+        "Violinist\\Slug\\": "src"
+      },
+      "classmap": [
+        "src/"
+      ]
+    },
+    "scripts": {
+      "test": "@composer lint && phpunit",
+      "lint": "phpcs -p -n"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.2",
+        "phpunit/phpunit": "^6.5"
+    }
+}
