@@ -2,14 +2,17 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/6.5/phpunit.xsd"
          bootstrap="vendor/autoload.php"
-         forceCoversAnnotation="true"
-         beStrictAboutCoversAnnotation="true"
-         beStrictAboutOutputDuringTests="true"
-         beStrictAboutTodoAnnotatedTests="true"
+         forceCoversAnnotation="false"
          verbose="true">
     <testsuite name="default">
         <directory suffix="Test.php">tests</directory>
     </testsuite>
+    <logging>
+        <log type="coverage-html" target="data/tmp/coverage" title="coverage"
+             charset="UTF-8" yui="true" highlight="true"
+             lowUpperBound="35" highLowerBound="70" />
+        <log type="coverage-clover" target="data/tmp/coverage.xml" />
+    </logging>
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
