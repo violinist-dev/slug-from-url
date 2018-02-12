@@ -7,6 +7,14 @@ class Slug
 
     private $url;
 
+    private $userName;
+
+    private $userRepo;
+
+    private $slug;
+
+    private $provider;
+
     /**
      * @return mixed
      */
@@ -22,14 +30,6 @@ class Slug
     {
         $this->url = $url;
     }
-
-    private $userName;
-
-    private $userRepo;
-
-    private $slug;
-
-    private $provider;
 
     /**
      * @return mixed
