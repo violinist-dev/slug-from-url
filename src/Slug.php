@@ -71,6 +71,7 @@ class Slug
     protected function getSupportedProviders()
     {
         return [
+          'gitlab.com',
           'github.com',
         ];
     }
