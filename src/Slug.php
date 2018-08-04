@@ -15,6 +15,11 @@ class Slug
 
     private $provider;
 
+  /**
+   * @var array
+   */
+    private $supportedProviders;
+
     /**
      * @return mixed
      */
@@ -60,7 +65,11 @@ class Slug
      */
     public function setProvider($provider)
     {
-        if (in_array($provider, $this->getSupportedProviders())) {
+        $supported_providers = self::getSupportedProviders();
+        if (isset($this->supportedProviders)) {
+          $supported_providers = array_merge($supported_providers, $this->supportedProviders);
+        }
+        if (in_array($provider, $supported_providers)) {
             $this->provider = $provider;
         }
     }
@@ -68,12 +77,20 @@ class Slug
     /**
      * @return array
      */
-    protected function getSupportedProviders()
+    public static function getSupportedProviders()
     {
         return [
           'gitlab.com',
           'github.com',
         ];
+    }
+
+  /**
+   * @param array $supportedProviders
+   */
+    public function setSupportedProviders($supportedProviders)
+    {
+        $this->supportedProviders = $supportedProviders;
     }
 
     /**
@@ -146,4 +163,21 @@ class Slug
         }
         return $slug;
     }
+
+  public static function createFromUrAndSupportedProvidersl($url, $supported_providers)
+  {
+    $slug = new self();
+    $slug->setSupportedProviders($supported_providers);
+    $slug->setUrl($url);
+    $url = parse_url($url);
+    if (!empty($url['host'])) {
+      $slug->setProvider($url['host']);
+    }
+    if (!empty($url['path'])) {
+      // It's probably going to start with a slash.
+      $path = ltrim($url['path'], '/');
+      $slug->setSlug($path);
+    }
+    return $slug;
+  }
 }
