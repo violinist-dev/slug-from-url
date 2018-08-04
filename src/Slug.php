@@ -67,7 +67,7 @@ class Slug
     {
         $supported_providers = self::getSupportedProviders();
         if (isset($this->supportedProviders)) {
-          $supported_providers = array_merge($supported_providers, $this->supportedProviders);
+            $supported_providers = array_merge($supported_providers, $this->supportedProviders);
         }
         if (in_array($provider, $supported_providers)) {
             $this->provider = $provider;
@@ -164,20 +164,20 @@ class Slug
         return $slug;
     }
 
-  public static function createFromUrlAndSupportedProvidersl($url, $supported_providers)
-  {
-    $slug = new self();
-    $slug->setSupportedProviders($supported_providers);
-    $slug->setUrl($url);
-    $url = parse_url($url);
-    if (!empty($url['host'])) {
-      $slug->setProvider($url['host']);
+    public static function createFromUrlAndSupportedProvidersl($url, $supported_providers)
+    {
+        $slug = new self();
+        $slug->setSupportedProviders($supported_providers);
+        $slug->setUrl($url);
+        $url = parse_url($url);
+        if (!empty($url['host'])) {
+            $slug->setProvider($url['host']);
+        }
+        if (!empty($url['path'])) {
+          // It's probably going to start with a slash.
+            $path = ltrim($url['path'], '/');
+            $slug->setSlug($path);
+        }
+        return $slug;
     }
-    if (!empty($url['path'])) {
-      // It's probably going to start with a slash.
-      $path = ltrim($url['path'], '/');
-      $slug->setSlug($path);
-    }
-    return $slug;
-  }
 }
