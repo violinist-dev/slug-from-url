@@ -164,7 +164,7 @@ class Slug
         return $slug;
     }
 
-    public static function createFromUrlAndSupportedProvidersl($url, $supported_providers)
+    public static function createFromUrlAndSupportedProviders($url, $supported_providers)
     {
         $slug = new self();
         $slug->setSupportedProviders($supported_providers);
