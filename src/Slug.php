@@ -174,7 +174,7 @@ class Slug
             $slug->setProvider($url['host']);
         }
         if (!empty($url['path'])) {
-          // It's probably going to start with a slash.
+            // It's probably going to start with a slash.
             $path = ltrim($url['path'], '/');
             $slug->setSlug($path);
         }
