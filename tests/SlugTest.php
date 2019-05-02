@@ -22,6 +22,13 @@ class SlugTest extends TestCase
         $this->assertEquals(null, $slug->getProvider());
     }
 
+    public function testBadUrl()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The slug repo part could not be determined from path');
+        $slug = Slug::createFromUrl('http://github.com/user');
+    }
+
     public function testcreateStaticallyFromSupportedProviders()
     {
         $slug = Slug::createFromUrlAndSupportedProviders('https://example.com/violinist-dev/slug-from-url', ['example.com']);

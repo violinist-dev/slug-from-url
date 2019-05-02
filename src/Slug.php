@@ -119,6 +119,9 @@ class Slug
     public static function getUserRepoFromSlug($slug, $provider)
     {
         $parts = self::getSlugPartsFromProvider($slug, $provider);
+        if (empty($parts[1])) {
+            throw new \InvalidArgumentException('The slug repo part could not be determined from path');
+        }
         return $parts[1];
     }
 
