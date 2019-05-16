@@ -82,6 +82,7 @@ class Slug
         return [
           'gitlab.com',
           'github.com',
+          'bitbucket.org'
         ];
     }
 
